@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/zephyr/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #212529;
+            color: #f8f9fa;
+        }
+        .auth-container {
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+        .form-container {
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+        .logo-container {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .form-divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        .form-divider:before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.2);
+            z-index: -1;
+        }
+        .form-divider span {
+            background-color: #343a40;
+            padding: 0 1rem;
+        }
+        .hidden {
+            display: none;
+        }
+        .form-control, .form-select {
+            background-color: #495057;
+            border-color: #6c757d;
+            color: #f8f9fa;
+        }
+        .form-control:focus, .form-select:focus {
+            background-color: #495057;
+            color: #f8f9fa;
+        }
+        .form-control::placeholder {
+            color: #adb5bd;
+        }
+        .form-text {
+            color: #adb5bd;
+        }
+        .btn-outline-secondary {
+            color: #adb5bd;
+            border-color: #adb5bd;
+        }
+        .btn-outline-secondary:hover {
+            background-color: #6c757d;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="auth-container">
+            <!-- Login Form -->
+            <div id="loginForm" class="form-container">
+                <h2 class="text-center mb-4">Login</h2>
+                <form id="loginFrm" aria-labelledby="loginFormTitle">
+                    <div class="mb-3">
+                        <label for="txtLoginEmail" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="txtLoginEmail" placeholder="name@example.com" required aria-required="true" aria-describedby="emailHelp">
+                        <div id="emailHelp" class="form-text">Enter your account email</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtLoginPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="txtLoginPassword" placeholder="Password" required aria-required="true" aria-describedby="passwordHelp">
+                        <div id="passwordHelp" class="form-text">Enter your account password</div>
+                    </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe" aria-describedby="rememberMeHelp">
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
+                        <div id="rememberMeHelp" class="form-text visually-hidden">Check to stay signed in on this device</div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary" id="btnLogin" aria-label="Sign in to your account">Login</button>
+                    </div>
+                    <div class="d-grid">
+                        <button type="button" class="btn btn-outline-secondary" id="btnShowRegister" aria-label="Switch to registration form">Need to Register?</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Registration Form -->
+            <div id="registerForm" class="form-container hidden">
+                <h2 class="text-center mb-4" id="registrationFormTitle">Registration</h2>
+                <form id="registrationFrm" aria-labelledby="registrationFormTitle">
+                    <div class="mb-3">
+                        <label for="txtEmail" class="form-label">Email Address</label>
+                        <!--required aria-required makes the field mandatory for the form-->
+                        <input type="email" class="form-control" id="txtEmail" placeholder="name@example.com" required aria-required="true" aria-describedby="regEmailHelp">
+                        <div id="regEmailHelp" class="form-text">Your email will be your username</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="txtPassword" placeholder="Password (8+ characters)" required aria-required="true" aria-describedby="passwordRequirements">
+                        <div id="passwordRequirements" class="form-text">Password must be at least 8 characters long</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="txtFirstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="txtFirstName" placeholder="First Name" required aria-required="true">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="txtMiddleName" class="form-label">Middle Name</label>
+                            <input type="text" class="form-control" id="txtMiddleName" placeholder="Middle Name" aria-required="false">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="txtLastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="txtLastName" placeholder="Last Name" required aria-required="true">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtAddress1" class="form-label">Street Address 1</label>
+                        <input type="text" class="form-control" id="txtAddress1" placeholder="Street Address 1" required aria-required="true">
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtAddress2" class="form-label">Street Address 2</label>
+                        <input type="text" class="form-control" id="txtAddress2" placeholder="Street Address 2" aria-required="false">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="txtCity" class="form-label">City</label>
+                            <input type="text" class="form-control" id="txtCity" placeholder="City" required aria-required="true">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="txtState" class="form-label">State</label>
+                            <input type="text" class="form-control" id="txtState" placeholder="State" required maxlength="2" aria-required="true" aria-describedby="stateHelp">
+                            <div id="stateHelp" class="form-text">Two-letter state code</div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="txtZIP" class="form-label">ZIP</label>
+                            <input type="text" class="form-control" id="txtZIP" placeholder="ZIP" required aria-required="true" aria-describedby="zipHelp">
+                            <div id="zipHelp" class="form-text">Format: 12345 or 12345-6789</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtMobileNum" class="form-label">Mobile Phone Number</label>
+                        <input type="tel" class="form-control" id="txtMobileNum" placeholder="(123) 456-7890" required aria-required="true" aria-describedby="phoneHelp">
+                        <div id="phoneHelp" class="form-text">Enter 10-digit phone number</div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary" id="btnRegister" aria-label="Create your account">Register</button>
+                    </div>
+                    <div class="d-grid">
+                        <button type="button" class="btn btn-outline-secondary" id="btnShowLogin" aria-label="Switch to login form">Already Registered? Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Regular expressions for validation
+        const regEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const regPhone = /^\d{10}$/;
+        const regZip = /^\d{5}(-\d{4})?$/;
+        const regName = /^[a-zA-Z\s-']+$/;
+        const regState = /^[A-Z]{2}$/;
+
+        document.getElementById('btnShowRegister').addEventListener('click', function() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('registerForm').classList.remove('hidden');
+        });
+
+        document.getElementById('btnShowLogin').addEventListener('click', function() {
+            document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+        });
+
+        // Login form validation
+        document.getElementById('loginFrm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let strUsername = document.getElementById('txtLoginEmail').value;
+            const strPassword = document.getElementById('txtLoginPassword').value;
+            strUsername = strUsername.toLowerCase();
+            
+            let blnError = false;
+            let strMessage = '';
+
+            if (!regEmail.test(strUsername)) {
+                blnError = true;
+                strMessage += '<p class="mb-0 mt-0">Username must be a valid email address</p>';
+            }
+            
+            if (strPassword.length < 1) {
+                blnError = true;
+                strMessage += '<p class="mb-0 mt-0">Password cannot be blank</p>';
+            }
+
+            if (blnError) {
+                Swal.fire({
+                    title: "Login Error",
+                    html: strMessage,
+                    icon: "error"
+                });
+            } else {
+                Swal.fire({
+                    title: "Success!",
+                    text: "Login successful",
+                    icon: "success"
+                });
+            }
+        });
+
+        // Registration form validation
+        document.getElementById('registrationFrm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let blnError = false;
+            let strMessage = '';
+
+            const strEmail = document.getElementById('txtEmail').value.toLowerCase();
+            if (!regEmail.test(strEmail)) {
+                blnError = true;
+                strMessage += '<p class="mb-0 mt-0">Email must be a valid email address</p>';
+            }
+
+            const strPassword = document.getElementById('txtPassword').value;
+            if (strPassword.length < 8) {
+                blnError = true;
+                strMessage += '<p class="mb-0 mt-0">Password must be at least 8 characters long</p>';
+            }
+
+            const strFirstName = document.getElementById('txtFirstName').value;
+            const strLastName = document.getElementById('txtLastName').value;
+            if (!regName.test(strFirstName) || strFirstName.length < 2) {
+                blnError = true;
+                strMessage += '<p class="mb-0 mt-0">First name must contain only letters and be at least 2 characters</p>';
+            }
+            
+            if (!regName.test(strLastName) || strLastName.length < 2) {
+                blnError = true;
+                strMessage += '<p class="mb-0 mt-0">Last name must contain only letters and be at least 2 characters</p>';
+            }
+
+            const strState = document.getElementById('txtState').value.toUpperCase();
+            if (!regState.test(strState)) {
+                blnError = true;
+                strMessage += '<p class="mb-0 mt-0">State must be a valid 2-letter state code</p>';
+            }
+
+            const strZIP = document.getElementById('txtZIP').value;
+            if (!regZip.test(strZIP)) {
+                blnError = true;
+                strMessage += '<p class="mb-0 mt-0">ZIP code must be in format 12345 or 12345-6789</p>';
+            }
+
+            const strPhone = document.getElementById('txtMobileNum').value.replace(/\D/g, '');
+            if (!regPhone.test(strPhone)) {
+                blnError = true;
+                strMessage += '<p class="mb-0 mt-0">Phone number must be 10 digits</p>';
+            }
+
+            if (blnError) {
+                Swal.fire({
+                    title: "Registration Error",
+                    html: strMessage,
+                    icon: "error"
+                });
+            } else {
+                Swal.fire({
+                    title: "Success!",
+                    text: "Registration successful",
+                    icon: "success"
+                });
+            }
+        });
+    </script>
+</body>
+</html>
